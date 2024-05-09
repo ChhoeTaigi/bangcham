@@ -1,0 +1,44 @@
+{
+  "basic": [
+		"簡單Chhōe",
+    "Kán-tan",
+    "簡易搜尋",
+    "Basic",
+    "簡易検索"
+  ],
+  "advanced": [
+    "詳細Chhōe",
+    "Siông-sè",
+    "進階搜尋",
+    "Advanced",
+    "詳細検索"
+  ],
+  "anchoannchhoe": [
+    "按怎Chhōe",
+    "Hoat-tō͘",
+    "如何搜尋",
+    "Usage",
+    "使い方"
+  ],
+  "app": [
+    "È-phoh",
+    "È-phoh",
+    "App",
+    "App",
+    "アプリ"
+  ],
+  "about": [
+		"紹介",
+    "Siāu-kài",
+    "介紹",
+    "About",
+    "紹介"
+  ],
+  "koankhoan": [
+		"寄付支持",
+    "Kià-hù",
+    "贊助支持",
+    "Support",
+    "寄付"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"db:setup": "node postgreSQL/setup.mjs",
+		"db:seed": "node postgreSQL/seed.mjs",
+		"build": "next build",
+		"start": "next start"
+	},
+	"dependencies": {
+		"@formatjs/intl-localematcher": "^0.5.4",
+		"csvtojson": "^2.0.10",
+		"negotiator": "^0.6.3",
+		"next": "latest",
+		"next-intl": "^3.13.0",
+		"postgres": "^3.4.4",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"sass": "^1.77.1",
+		"server-only": "^0.0.1",
+		"sharp": "^0.33.3"
+	},
+	"devDependencies": {
+		"@types/negotiator": "^0.6.3",
+		"@types/node": "^20.12.11",
+		"@types/react": "^18.3.1",
+		"@types/react-dom": "^18.3.0",
+		"prettier": "^3.2.5",
+		"prisma": "^5.13.0",
+		"typescript": "^5.4.5"
+	}
+}

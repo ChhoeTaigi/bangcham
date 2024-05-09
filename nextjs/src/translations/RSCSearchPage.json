@@ -1,0 +1,22 @@
+{
+	"keyowrd": ["Chhōe ê字詞", "Chhōe ê jī-sû", "搜尋關鍵字", "Search Keywords"],
+	"allDictListResultCount": [
+		"Chhōe ê結果：計共{count}份/",
+		"Chhōe ê kiat-kó: Kè-kiōng {count} hūn/",
+		"搜尋結果：共{count}筆/",
+		"Result: {count} result(s)/"
+	],
+	"wordResultCount": [
+		"{count}條",
+		"{count} tiâu",
+		"{count}筆",
+		"{count} result(s)"
+	],
+	"dictResultCount": [
+		"計共{count}份",
+		"Kè-kiōng {count} hūn",
+		"共{count}筆",
+		"Total {count} result(s)"
+	],
+	"more": ["詳細", "Siông-sè", "詳細", "More"]
+}

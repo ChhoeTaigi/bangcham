@@ -1,0 +1,95 @@
+CREATE TABLE "public"."NoauiChhoeTaigi" (
+	"id" SERIAL PRIMARY KEY,
+	"JoinedDictColumnName" varchar(40),
+	"漢Lô" varchar(40),
+	"Pe̍h-ōe-jī" varchar(40),
+	"English" varchar(40),
+	"日本語" varchar(40),
+	"中文" varchar(40),
+	CONSTRAINT "JoinedDictColumnName_key" UNIQUE ("JoinedDictColumnName")
+);
+CREATE TABLE "public"."NoauiDict" (
+	"id" SERIAL PRIMARY KEY,
+	"DictCode" varchar(40),
+	"漢Lô" varchar(40),
+	"Pe̍h-ōe-jī" varchar(40),
+	"English" varchar(40),
+	"日本語" varchar(40),
+	"中文" varchar(40),
+	"noauiChhoeTaigiIdList" integer [],
+	CONSTRAINT "DictCode_key" UNIQUE ("DictCode")
+);
+CREATE INDEX "NoauiDict_DictCode_idx" ON "public"."NoauiDict" USING btree ("DictCode");
+CREATE TABLE "public"."ChhoeTaigi" (
+	"JoinedWordID" integer PRIMARY KEY,
+	"DictCode" varchar(40) REFERENCES "NoauiDict"("DictCode"),
+	"DictWordID" integer NOT NULL,
+	"SuBe" text,
+	"PojUnicode" text,
+	"PojUnicodeOthers" text,
+	"PojInput" text,
+	"PojInputOthers" text,
+	"KipUnicode" text,
+	"KipUnicodeOthers" text,
+	"KipInput" text,
+	"KipInputOthers" text,
+	"LmjUnicode" text,
+	"LmjUnicodeOthers" text,
+	"HanLoTaibunPoj" text,
+	"HanLoTaibunKip" text,
+	"KaisoehPoj" text,
+	"KaisoehKip" text,
+	"KaisoehHanLoPoj" text,
+	"KaisoehHanLoKip" text,
+	"KaisoehEngbun" text,
+	"KaisoehJitbunPoj" text,
+	"LekuPoj" text,
+	"LekuKip" text,
+	"LekuHanLoPoj" text,
+	"LekuHanLoKip" text,
+	"LekuEngbun" text,
+	"LekuHoabun" text,
+	"LesuPoj" text,
+	"LekuJitbunPoj" text,
+	"HoaBun" text,
+	"EngBun" text,
+	"JitBun" text,
+	"KhehBun" text,
+	"HanbunImPojUnicode" text,
+	"HanbunImPojInput" text,
+	"HanbunImKipUnicode" text,
+	"HanbunImKipInput" text,
+	"KahToo" text,
+	"Abbreviation" text,
+	"NounClassifier" text,
+	"Reduplication" text,
+	"Synonym" text,
+	"Opposite" text,
+	"Confer" text,
+	"Hunlui" text,
+	"HunluiJitbun" text,
+	"KipDictDialects" text,
+	"KipDictWordProperty" text,
+	"KipDictHanjiTaibunOthers" text,
+	"KipDictKaisoehKhehbun" text,
+	"SoanntengMuitheSekinPoochhiongChuliau" text,
+	"SoanntengMuitheSekinHongsangJitki" text,
+	"SoanntengMuitheSekinChute" text,
+	"PageNumber" text,
+	"PageNumberChianoePan" text,
+	"SuBeSoatbeng" text,
+	"StoreLink" text,
+	"LaigoanMia" text,
+	"LaigoanBangchi" text,
+	"ChhehMia" text,
+	"ChhoetaigiPhianChu" text,
+	CONSTRAINT "ChhoeTaigi_DictCode_DictWordID_key" UNIQUE ("DictCode", "DictWordID")
+) WITH (oids = false);
+CREATE INDEX "ChhoeTaigi_DictCode_idx" ON "public"."ChhoeTaigi" USING btree ("DictCode");
+CREATE INDEX "ChhoeTaigi_EngBun_idx" ON "public"."ChhoeTaigi" USING btree ("EngBun");
+CREATE INDEX "ChhoeTaigi_HoaBun_idx" ON "public"."ChhoeTaigi" USING btree ("HoaBun");
+CREATE INDEX "ChhoeTaigi_JitBun_idx" ON "public"."ChhoeTaigi" USING btree ("JitBun");
+CREATE INDEX "ChhoeTaigi_KipInput_idx" ON "public"."ChhoeTaigi" USING btree ("KipInput");
+CREATE INDEX "ChhoeTaigi_KipUnicode_idx" ON "public"."ChhoeTaigi" USING btree ("KipUnicode");
+CREATE INDEX "ChhoeTaigi_PojInput_idx" ON "public"."ChhoeTaigi" USING btree ("PojInput");
+CREATE INDEX "ChhoeTaigi_PojUnicode_idx" ON "public"."ChhoeTaigi" USING btree ("PojUnicode");

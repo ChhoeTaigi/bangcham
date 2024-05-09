@@ -1,4 +1,4 @@
-.site-header {
+#site-header {
 	position: fixed;
 	height: 56px;
 	width: 100%;
@@ -78,7 +78,7 @@
 
 #FB-link {
 	display: block;
-	background-image: url(/images/fb@2x.png);
+	background-image: url(../../public/images/fb@2x.png);
 	background-size: 22px 22px;
 	height: 22px;
 	width: 22px;
@@ -94,7 +94,7 @@ main {
 }
 
 @media screen and (max-width: 980px) {
-	.site-header {
+	#site-header {
 		height: 91px;
 		h1 {
 			padding-top: 10px;
@@ -110,7 +110,7 @@ main {
 }
 
 @media screen and (max-width: 680px) {
-	.site-header {
+	#site-header {
 		height: 56px;
 		h1 {
 			padding: 0;
@@ -124,7 +124,7 @@ main {
 			display: flex;
 			width: 22px;
 			height: 22px;
-			background: url(/images/icon_hamburger@2x.png) no-repeat;
+			background: url(../../public/images/icon_hamburger@2x.png) no-repeat;
 			background-size: 22px 22px;
 		}
 		ul {
