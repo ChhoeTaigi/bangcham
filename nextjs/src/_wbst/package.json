@@ -1,0 +1,52 @@
+{
+  "name": "chhoetaigi",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+  },
+  "dependencies": {
+    "@google-analytics/data": "^4.5.0",
+    "bcryptjs": "^2.4.3",
+    "jquery": "^3.6.0",
+    "knex": "^0.21.19",
+    "meteor-node-stubs": "^1.1.0",
+    "pg": "^8.7.3",
+    "query-string": "^7.1.1",
+    "react": "^16.14.0",
+    "react-cookie": "^3.0.4",
+    "react-dom": "^16.14.0",
+    "react-ga4": "^2.1.0",
+    "react-loader-spinner": "^3.1.14",
+    "react-localize-redux": "^3.5.3",
+    "react-router-dom": "^4.3.1",
+    "react-router-hash-link": "^1.2.0",
+    "redux": "^4.1.2",
+    "request": "^2.88.2"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.js",
+      "server": "server/main.js"
+    },
+    "testModule": "tests/main.js"
+  },
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChhoeTaigi/ChhoeTaigiWebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/ChhoeTaigi/ChhoeTaigiWebsite/issues"
+  },
+  "homepage": "https://github.com/ChhoeTaigi/ChhoeTaigiWebsite#readme"
+}
