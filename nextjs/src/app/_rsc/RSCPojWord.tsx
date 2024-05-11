@@ -1,10 +1,10 @@
 import "server-only";
 
 import * as React from "react";
-import { findUniqueByDictCodeAndWordId } from "./api";
+import { dicAndId } from "../_api";
 
 export default async function RSCPojWord({ dictionary, wordId }) {
-	const chhoeTaigi = await findUniqueByDictCodeAndWordId(
+	const [chhoeTaigi] = await dicAndId(
 		dictionary.code,
 		wordId,
 	);

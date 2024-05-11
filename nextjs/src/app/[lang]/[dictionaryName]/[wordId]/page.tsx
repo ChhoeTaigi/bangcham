@@ -6,7 +6,7 @@ import RSCWordTable from "@/app/_rsc/RSCWordTable";
 import RSCPojWord from "@/app/_rsc/RSCPojWord";
 
 import { getDictionaryByName } from "@/app/_isomorphic/Dictionary";
-import { findUniqueByDictCodeAndWordId } from "@/app/_rsc/api";
+import { dicAndId } from "@/app/_api";
 
 type DictionaryWordParams = { dictionaryName: string; wordId: string };
 
@@ -18,7 +18,7 @@ export async function generateMetadata({
 }) {
 	const dictionary = getDictionaryByName(dictionaryName);
 	const wordId = parseInt(params.wordId, 10);
-	const chhoeTaigi = await findUniqueByDictCodeAndWordId(
+	const [chhoeTaigi] = await dicAndId(
 		dictionary.code,
 		wordId,
 	);

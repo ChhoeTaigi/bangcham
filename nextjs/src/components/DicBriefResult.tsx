@@ -5,7 +5,9 @@ import { getDictionaryByName } from "@/app/_isomorphic/Dictionary";
 
 export default function DicBriefResult({
 	dic,
-	wordResultCount,
+	result1,
+	count,
+	result2,
 	children,
 }) {
 	function toggleDic(event) {
@@ -27,12 +29,13 @@ export default function DicBriefResult({
 				<h2 className="dic-block__title">
 					{getDictionaryByName(dic).chineseName}
 				</h2>
-				<h3 className="dic-block__counts">({wordResultCount})</h3>
+				<h3 className="dic-block__counts">
+					({result1}
+					{count}
+					{result2})
+				</h3>
 			</header>
-			<div className="dic-block__content">
-				{children}
-			
-			</div>
+			<div className="dic-block__content">{children}</div>
 		</div>
 	);
 }

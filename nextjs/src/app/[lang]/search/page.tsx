@@ -3,16 +3,14 @@ import "server-only";
 import * as React from "react";
 import { getTranslations } from "next-intl/server";
 
-import { basicAllDictList } from "@/app/_rsc/api";
 import DicBriefResult from "@/components/DicBriefResult";
 import RSCBriefWordTable from "@/app/_rsc/RSCBriefWordTable";
 import DicButtonGroup from "@/components/DicButtonGroup";
+import { normalizeBasic, basic } from "@/app/_api";
 
-type SearcgParams = { lang: string };
+type SearchParams = { lang: string };
 
-export async function generateMetadata({
-	searchParams: { spelling },
-}) {
+export async function generateMetadata({ searchParams: { spelling } }) {
 	const title = ["Chhoe ", spelling].filter(Boolean).join(" | ");
 	return {
 		title,
@@ -31,85 +29,65 @@ export async function generateMetadata({
 async function RSCBasicSearch({
 	params: { lang },
 	searchParams,
-	searchParams: {
-		method,
-		dic,
-		page,
-		searchMethod,
-		spellingMethod: rawSpellingMethod,
-		spelling,
-		taibun,
-		hoabun,
-		english,
-		jitbun,
-	},
+	searchParams: { dic },
 }: {
-	params: SearcgParams;
+	params: SearchParams;
 	searchParams: any;
 }) {
 	const t = await getTranslations("RSCSearchPage");
-	const spellingMethod =
-		{
-			poj_unicode: "PojUnicode",
-			poj_input: "PojInput",
-			kiplmj_unicode: "KipUnicode",
-			kiplmj_input: "KipInput",
-		}[rawSpellingMethod] ||
-		rawSpellingMethod ||
-		"spelling";
-	const columns = Object.fromEntries(
-		[
-			[spellingMethod, spelling],
-			["taibun", taibun],
-			["hoabun", hoabun],
-			["english", english],
-			["jitbun", jitbun],
-		].filter(([, value]) => !!value && /\S/.test(value)),
-	);
-	const { dictResultList, wordCount } = await basicAllDictList({
-		// method,
-		// dic,
-		// page,
-		// spellingMethod,
-		searchMethod,
-		columns,
-	});
+	const options = normalizeBasic(searchParams);
+	if (dic) {
+		const r = await basic(options);
+		console.log(r);
+		return "TODO : single dic";
+	}
+	const resultListStack = await basic(options);
+	const sumOfAllNum = resultListStack.reduce((acc, it) => acc + it.num, 0);
+
 	return (
 		<React.Fragment>
 			<div className="container">
 				<div className="search-result__query">
-					{t("keyowrd")}：
-					{Object.entries(columns)
-						.map(([key, value]) => `【${value}】`)
+					{t("search_keyword")}：
+					{Object.entries(options.columns)
+						.filter(([, value]) => value)
+						.map(([, value]) => `【${value}】`)
 						.join("，")}
 				</div>
 				<div key="resultCount" className="search-result__counts">
-					{t("allDictListResultCount", { count: dictResultList.length })}
-					{t("wordResultCount", { count: wordCount })}
+					{t("all-result-1")}
+					{resultListStack.length}
+					{t("all-result-2")}
+					{sumOfAllNum}
+					{t("all-result-3")}
 				</div>
 				{/* 
 				{!this.props.allResults && LoadingIndicator} */}
 			</div>
 			<div id="dic-button-group" className="search-result__dic-list">
 				<div className="container">
-					<DicButtonGroup dictNameList={dictResultList.map(({ dic }) => dic)} />
+					<DicButtonGroup
+						dictNameList={resultListStack.map(({ dic }) => dic)}
+					/>
 				</div>
 			</div>
 			<div className="search-result__brief">
 				<div className="container">
-					{dictResultList.map(({ dic, total, wordList }) => (
+					{resultListStack.map(({ num, dic, words }) => (
 						<DicBriefResult
 							key={dic}
 							dic={dic}
-							wordResultCount={t("wordResultCount", { count: total })}
+							result1={t("result-1")}
+							count={num}
+							result2={t("result-2")}
 						>
 							<RSCBriefWordTable
 								lang={lang}
 								dic={dic}
-								wordList={wordList}
+								wordList={words}
 								more={t("more")}
 							/>
-							{20 < total && (
+							{20 < num && (
 								<div className="dic-block__append">
 									more-results!!
 									{/* <Link className="btn dic-block__more" to={this.state.url}>

@@ -1,12 +1,12 @@
 import "server-only";
 
 import * as React from "react";
-import { findUniqueByDictCodeAndWordId } from "./api";
 import {
 	DICT_2009_TJ_TAIGI_PEHOE_SIOSUTIAN_SEKIN,
 	DICT_TAIOAN_BUNHAK_TUCHOK_SEKIN,
 	getDictionaryByName,
 } from "@/app/_isomorphic/Dictionary";
+import { dicAndId } from "../_api";
 
 function RSCGoanChhehLink({ dictionary, chhoeTaigi }) {
 	if (
@@ -84,7 +84,7 @@ function RSCDictionaryColumn({ dictionary, columnKey, chhoeTaigi }) {
 }
 
 export default async function RSCWordTable({ dictionary, wordId }) {
-	const chhoeTaigi = await findUniqueByDictCodeAndWordId(
+	const [chhoeTaigi] = await dicAndId(
 		dictionary.code,
 		wordId,
 	);
