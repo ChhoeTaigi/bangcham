@@ -14,10 +14,12 @@ export default async function RSCHeader() {
 					title: t("basic"),
 				},
 				{
+					isDisabled: true,
 					href: "/chinkai",
 					title: t("advanced"),
 				},
 				{
+					isDisabled: true,
 					href: "/annachhoe",
 					title: t("anchoannchhoe"),
 				},
@@ -26,6 +28,7 @@ export default async function RSCHeader() {
 				// 	title: t("app"),
 				// },
 				{
+					isDisabled: true,
 					href: "/liaukai",
 					title: t("about"),
 				},

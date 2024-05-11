@@ -51,8 +51,8 @@ export function basic(options: any) {
 	).then((list) => list.filter(({ num, dic }) => 0 < num));
 }
 
-export function dicAndId(dic, id) {
-	return sql`
+export async function dicAndId(dic, id) {
+	const result = await sql`
 SELECT *
 FROM "public"."ChhoeTaigi"
 WHERE
@@ -60,6 +60,7 @@ WHERE
 	AND "DictWordID" = ${id}
 LIMIT 1
 `;
+	return result[0];
 }
 
 // export function allField(options: any) {

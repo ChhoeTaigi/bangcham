@@ -7,8 +7,7 @@ import RSCPojWord from "@/app/_rsc/RSCPojWord";
 
 import { getDictionaryByName } from "@/app/_isomorphic/Dictionary";
 import { dicAndId } from "@/app/_api";
-
-type DictionaryWordParams = { dictionaryName: string; wordId: string };
+import type { DictionaryWordParams } from "./types";
 
 export async function generateMetadata({
 	params,
@@ -18,10 +17,7 @@ export async function generateMetadata({
 }) {
 	const dictionary = getDictionaryByName(dictionaryName);
 	const wordId = parseInt(params.wordId, 10);
-	const [chhoeTaigi] = await dicAndId(
-		dictionary.code,
-		wordId,
-	);
+	const chhoeTaigi = await dicAndId(dictionary.code, wordId);
 	const title = [
 		chhoeTaigi.PojUnicode,
 		chhoeTaigi.HanLoTaibunPoj,
@@ -42,7 +38,7 @@ export async function generateMetadata({
 
 export default function RSCWordPage({
 	params,
-	params: { dictionaryName },
+	params: { lang, dictionaryName },
 }: {
 	params: DictionaryWordParams;
 }) {
@@ -58,8 +54,18 @@ export default function RSCWordPage({
 							{dictionary.chineseName}：
 						</div>
 						<div className="result-detail__query-text">
-							<RSCPojWord dictionary={dictionary} wordId={wordId} />
+							<RSCPojWord dic={dictionaryName} wordId={wordId} />
 						</div>
+					</div>
+					<div
+						style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: '20px' }}
+					>
+						<img
+							src={`/${lang}/${dictionaryName}/${wordId}/opengraph-image`}
+							alt="opengraph-image"
+							width="600"
+							height="315"
+						/>
 					</div>
 					<div className="result-detail__table">
 						<RSCWordTable dictionary={dictionary} wordId={wordId} />

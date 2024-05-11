@@ -1,6 +1,8 @@
 import dicStruct from "./dictStruct";
 import sql from "../../postgreSQL/pool";
 
+const debug = (...any: any) => {};
+
 function isValid(columns: any, dicColumns: any) {
 	for (let key in columns) {
 		if (
@@ -113,7 +115,7 @@ export function basicSearch(options, pageSize) {
 	const struct = dicStruct.find((e) => e.name === dic);
 
 	if (!isValid(options.columns, struct.columns)) {
-		console.log("basicSearch invalid", options, struct);
+		debug("basicSearch invalid", options, struct);
 		return {
 			dic,
 			num: 0,

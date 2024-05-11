@@ -36,11 +36,11 @@ export default function Header({ navItemList, translations }) {
 						<span className="sr-only">Toggle menu</span>
 					</button>
 					<ul id="site-nav-list" ref={siteNavListRef} onClick={closeMenu}>
-						{navItemList.map(({ href, title }) => (
+						{navItemList.map(({ isDisabled, href, title }) => (
 							<li key={href}>
-								<Link href={href} className={href === pathname ? "active" : ""}>
+								{isDisabled ? title : <Link href={href} className={href === pathname ? "active" : ""}>
 									{title}
-								</Link>
+								</Link>}
 							</li>
 						))}
 						<li>

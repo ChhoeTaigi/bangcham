@@ -2,6 +2,7 @@ import postgres from '../database/postgres';
 import dicStruct from '../dicts/dictionary-struct';
 import { lowerQeury, lowerStr } from './regExp';
 
+const debug = (...any: any) => {};
 
 export function queryCondictionSingleDic(options) {
 	const dic = options.dic;
@@ -9,7 +10,7 @@ export function queryCondictionSingleDic(options) {
 	const dicColumns = struct.columns;
 	const columns = options.columns;
 
-	console.log("queryCondictionSingleDic: " + dic);
+	debug("queryCondictionSingleDic: " + dic);
 
 	const query = postgres.from(dic);
 	for (let key in columns) {

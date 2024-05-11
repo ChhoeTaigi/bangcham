@@ -84,7 +84,7 @@ function RSCDictionaryColumn({ dictionary, columnKey, chhoeTaigi }) {
 }
 
 export default async function RSCWordTable({ dictionary, wordId }) {
-	const [chhoeTaigi] = await dicAndId(
+	const chhoeTaigi = await dicAndId(
 		dictionary.code,
 		wordId,
 	);

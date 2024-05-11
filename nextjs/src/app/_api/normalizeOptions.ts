@@ -34,8 +34,10 @@ import {
 	regexStringAhUnSuffix,
 } from "./regExp";
 
+const debug = (...any: any) => {};
+
 function lomajiColumnKeyQueryRegexProcess(options, key) {
-	// console.log("lomajiColumnKeyQueryRegexProcess(), options.columns[key]: " + options.columns[key]);
+	// debug("lomajiColumnKeyQueryRegexProcess(), options.columns[key]: " + options.columns[key]);
 	if (
 		key === "PojInput" ||
 		key === "PojInputOthers" ||
@@ -57,7 +59,7 @@ function lomajiColumnKeyQueryRegexProcess(options, key) {
 	);
 
 	if (options.columns[key].includes("@")) {
-		// console.log("@@@@@@@@@ key: " + options.columns[key]);
+		// debug("@@@@@@@@@ key: " + options.columns[key]);
 		if (options.columns[key].endsWith("@")) {
 			const un7bo2 = options.columns[key].replace("@", "");
 			options.columns[key] =
@@ -164,10 +166,10 @@ function cleanEmptyColumns(options) {
 }
 
 function preprocessRegex(options) {
-	console.log("preprocessRegex()");
+	debug("preprocessRegex()");
 
 	if (undefined !== options.value) {
-		// console.log("preprocessRegex() - options.value");
+		// debug("preprocessRegex() - options.value");
 		options.value = options.value.replace(regexpRedundantSianntiau, "");
 		options.value = options.value.replace(
 			regexpSianntiauTaibe,
@@ -234,11 +236,11 @@ function preprocessRegex(options) {
 			regexpStringSpecialChar4,
 		);
 	} else if (undefined !== options.columns) {
-		// console.log("preprocessRegex() - options.columns");
+		// debug("preprocessRegex() - options.columns");
 		for (let key in options.columns) {
 			if (/\S/.test(options.columns[key])) {
-				// console.log("preprocessRegex() - options.columns - key:" + key);
-				// console.log("preprocessRegex() - options.columns[key]:" + options.columns[key]);
+				// debug("preprocessRegex() - options.columns - key:" + key);
+				// debug("preprocessRegex() - options.columns[key]:" + options.columns[key]);
 				if (
 					key === "PojInput" ||
 					key === "PojInputOthers" ||
@@ -275,7 +277,7 @@ function preprocessRegex(options) {
 }
 
 function processSearchMethod(options) {
-	console.log("processSearchMethod()");
+	debug("processSearchMethod()");
 
 	if (options.searchMethod !== "equals") {
 		return options;
@@ -290,7 +292,7 @@ function processSearchMethod(options) {
 		// search common
 		for (let key in options.columns) {
 			if (/\S/.test(options.columns[key])) {
-				console.log("processSearchMethod() - options.columns - key: " + key);
+				debug("processSearchMethod() - options.columns - key: " + key);
 				if (
 					key === "spelling" ||
 					key === "PojInput" ||
@@ -304,7 +306,7 @@ function processSearchMethod(options) {
 				) {
 					options.columns[key] =
 						"(?:^|.*/)" + options.columns[key] + "(?:\\(.*\\))?(?:/.*|$)";
-					console.log(options.columns[key]);
+					debug(options.columns[key]);
 				} else {
 					options.columns[key] = "^" + options.columns[key] + "$";
 				}
