@@ -54,9 +54,9 @@ docker stop guntau_nextjs && docker rm guntau_nextjs
 # Then start again
 
 # Stop all running containers
-docker compose -f docker-compose.dev.yml down
+docker compose -f docker-compose.dev.yml stop
 
-# Stop all running containers and remove the (database) volumes
+# Destroy all containers and the (database) volumes
 docker compose -f docker-compose.dev.yml down --volumes
 
 # Free space
