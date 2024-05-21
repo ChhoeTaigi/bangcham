@@ -6,6 +6,7 @@ import type { Metadata, Viewport } from "next";
 import "@/styles/styles.scss";
 import RSCHeader from "../_rsc/RSCHeader";
 import RSCFooter from "../_rsc/RSCFooter";
+import { init } from "src/LangNoauiDict";
 
 const title = "ChhoeTaigi 台語辭典⁺";
 const description =
@@ -50,6 +51,7 @@ export default function RSCRootLayout({
 	children: React.ReactNode;
 	params: any;
 }) {
+	init();
 	return (
 		<html lang={params.lang}>
 			<head>

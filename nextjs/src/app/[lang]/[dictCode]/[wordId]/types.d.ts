@@ -1,5 +1,5 @@
 export type DictionaryWordParams = {
 	lang: string;
-	dictionaryName: string;
+	dictCode: string;
 	wordId: string;
 };

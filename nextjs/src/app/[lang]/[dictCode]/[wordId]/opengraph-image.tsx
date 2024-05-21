@@ -15,13 +15,13 @@ export const contentType = "image/png";
 // Image generation
 export default async function OpengraphImage({
 	params,
-	params: { dictionaryName },
+	params: { dictCode },
 }: {
 	params: DictionaryWordParams;
 }) {
 	const wordId = parseInt(params.wordId, 10);
 	const [chhoeTaigi, DejaVuSans] = await Promise.all([
-		dicAndId(dictionaryName, wordId),
+		dicAndId(dictCode, wordId),
 		fetch(
 			/**
 			 * Found at https://github.com/prawnpdf/prawn/blob/master/data/fonts/DejaVuSans.ttf

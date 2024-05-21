@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { getDictionaryByName } from "@/app/_isomorphic/Dictionary";
 
 export default function DicBriefResult({
 	dic,
@@ -27,7 +26,7 @@ export default function DicBriefResult({
 		<div id={`dic-${dic}`} className="dic-block">
 			<header className="dic-block__header" onClick={toggleDic}>
 				<h2 className="dic-block__title">
-					{getDictionaryByName(dic).chineseName}
+					{/* {getDictionaryByName(dic).chineseName} */}
 				</h2>
 				<h3 className="dic-block__counts">
 					({result1}

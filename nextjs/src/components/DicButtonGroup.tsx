@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { getDictionaryByName } from "@/app/_isomorphic/Dictionary";
 
 export default function DicButtonGroup({ dictNameList }) {
 	const [selectedName, setSelectedName] = React.useState(dictNameList[0]);
@@ -25,7 +24,7 @@ export default function DicButtonGroup({ dictNameList }) {
 					data-dic-name={dicName}
 					onClick={toggleDic}
 				>
-					{getDictionaryByName(dicName).chineseName}
+					{/* {getDictionaryByName(dicName).chineseName} */}
 				</button>
 			))}
 		</React.Fragment>

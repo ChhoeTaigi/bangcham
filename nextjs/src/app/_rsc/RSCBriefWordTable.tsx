@@ -1,12 +1,11 @@
 import * as React from "react";
-import { getDictionaryByName } from "@/app/_isomorphic/Dictionary";
 import Link from "next/link";
 
 export default function RSCBriefWordTable({ lang, dic, wordList, more }) {
 	if (0 === wordList.length) {
 		return false;
 	}
-	const dictionary = getDictionaryByName(dic);
+	// const dictionary = getDictionaryByName(dic);
 	const briefEntryList = Object.entries(dictionary.brief);
 
 	return (
