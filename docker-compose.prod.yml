@@ -1,0 +1,23 @@
+services:
+  nextjs:
+    container_name: ${PROJECT}_nextjs
+    build:
+      context: ./nextjs
+      dockerfile: prod.Dockerfile
+      args:
+        ENV_VARIABLE: ${ENV_VARIABLE}
+        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - frontend
+      - backend
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  frontend:
+    name: ${PROJECT}_frontend
+  backend:
+    name: ${PROJECT}_backend
